@@ -1,5 +1,5 @@
 # RaidTest
-Bash script to find the best combination of ReadAhead and stripe_cache_size
+Bash script to find the best combination of ReadAhead and stripe_cache_size in a RAID5 array
 
 the output will look something like:
 ```
