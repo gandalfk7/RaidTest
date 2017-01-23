@@ -16,9 +16,9 @@ echo "StripeCache:      $ori_stripecache" >> settings_ori_$var_date
 #heading of the chart
 echo "ReadAh    Stripe  WRITE   READ"
 
-for READ_AHEAD in 1536 4096 32768 262144 524288; do
+for READ_AHEAD in 1024 1536 4096 32768 262144 524288; do
         blockdev --setra $READ_AHEAD /dev/$MD_DEV
-        for STRIPE_CACHE_SIZE in 512 1024 2048 4096 8192 16384 32768; do
+        for STRIPE_CACHE_SIZE in 256 512 1024 2048 4096 8192 16384 32768; do
                 echo ${STRIPE_CACHE_SIZE} > /sys/block/$MD_DEV/md/stripe_cache_size
                 RES_WRITE=`dd if=/dev/zero of=$FILE bs=$BLOCKSIZE count=$FILESIZE conv=fdatasync  2>&1 | awk '/bytes/{print $(NF-1), $NF}'`
                 sync
